@@ -1,0 +1,20 @@
+<div class='col-xs-12 no-gutter'>
+	<div class="row detail-hd">
+		<image class='col-xs-3 detail-img-bg' ng-src='{{info.url}}'></image>
+		<div class='col-xs-9 no-gutter'>
+			<span class='col-xs-12 detail-hd-nm'>{{info.name}}</span>
+			<span class='col-xs-12 detail-hd-txt'>{{info.title}} at {{info.company}}</span>
+			<span class='col-xs-12 detail-hd-txt'>Lives in {{info.location}}</span>
+		</div>
+	</div>
+	<ul class="row no-style-ul no-gutter">
+		<li class='col-xs-12 no-gutter' ng-repeat="m in info.contents">
+			<image class='col-xs-3 detail-img-sm' ng-src='{{info.url}}' ng-hide="m.userId == loginId"></image>
+			<span ng-class="{'detail-dlg': m.userId != loginId, 'detail-dlg-self': m.userId == loginId}">{{m.text}}</span>
+		</li>
+	</ul>
+	<div class="row div-ft no-gutter">
+		<input class="col-xs-10 detail-ft-msg" type="text" ng-model="newMessage" placeholder="Type a message..."/>
+		<input class="col-xs-2 detail-ft-btn" type="buttom" value="Send" ng-click="send(newMessage)"/>
+	</div>
+</div>
