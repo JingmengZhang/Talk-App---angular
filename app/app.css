@@ -130,13 +130,12 @@ span.dlg-msg {
 .no-style-ul {
   list-style: none;
   padding: 2px 0; 
-  margin: 6px;
+  margin: 3px;
 }
 
 .detail-img-sm {
   width: 30px;
-  padding: 0;
-  margin: 0;
+  margin: 2px;
   -webkit-border-radius: 100%;
   -0-border-radius: 100%;
   -moz-border-radius: 100%;
@@ -146,19 +145,20 @@ span.dlg-msg {
 
 .detail-dlg {
   max-width: 70%;
-  margin: 8px;
-  padding: 8px;
+  margin: 1px;
+  padding: 6px;
   background-color: #e6e6e6;
   -webkit-border-radius: 10px;
   -0-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+  float: left;
 }
 
 .detail-dlg-self {
   max-width: 70%;
-  margin: 8px;
-  padding: 8px;
+  margin: 1px;
+  padding: 6px;
   color: #fff;
   background-color: #0060B6;
   -webkit-border-radius: 10px;
@@ -178,6 +178,7 @@ span.dlg-msg {
 .detail-ft-msg {
   border: none;
   height: 30px;
+  padding: 10px;
 }
 
 .detail-ft-btn {

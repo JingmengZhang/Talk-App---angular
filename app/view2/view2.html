@@ -3,8 +3,8 @@
 		<image class='col-xs-3 detail-img-bg' ng-src='{{info.url}}'></image>
 		<div class='col-xs-9 no-gutter'>
 			<span class='col-xs-12 detail-hd-nm'>{{info.name}}</span>
-			<span class='col-xs-12 detail-hd-txt'>{{info.title}} at {{info.company}}</span>
-			<span class='col-xs-12 detail-hd-txt'>Lives in {{info.location}}</span>
+			<span class='col-xs-12 detail-hd-txt' ng-hide="info.title == null || info.title == '' || info.company == null || info.company == ''">{{info.title}} at {{info.company}}</span>
+			<span class='col-xs-12 detail-hd-txt' ng-hide="info.location == null || info.location == ''">Lives in {{info.location}}</span>
 		</div>
 	</div>
 	<ul class="row no-style-ul no-gutter">
@@ -14,7 +14,7 @@
 		</li>
 	</ul>
 	<div class="row div-ft no-gutter">
-		<input class="col-xs-10 detail-ft-msg" type="text" ng-model="newMessage" placeholder="Type a message..."/>
-		<input class="col-xs-2 detail-ft-btn" type="buttom" value="Send" ng-click="send(newMessage)"/>
+		<input class="col-xs-10 detail-ft-msg" type="text" ng-model="newMessage" my-enter="send(newMessage)" placeholder="Type a message..."/>
+		<input class="col-xs-2 detail-ft-btn" type="buttom" value="Send" ng-click="send(newMessage)" ng-disabled="newMessage == null || newMessage == ''"/>
 	</div>
 </div>
