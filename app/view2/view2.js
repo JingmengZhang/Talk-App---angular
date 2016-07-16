@@ -57,14 +57,25 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.list'])
 })
 .controller('View2Ctrl', ['$scope', '$routeParams', 'messages', '$rootScope', '$location', '$anchorScroll', function($scope, $routeParams, messages, $rootScope, $location, $anchorScroll) {
 	$rootScope.location = "#!/view2";
-	$rootScope.loginId = 90001;
-	$scope.info = messages.getDetail($routeParams.id);
-	
+	$rootScope.loginInfo= {"id": 90001, "name": "Recy", "url":"abc.jpg"};
+	$scope.info = messages.getDetail($routeParams.id);	
 	$scope.send = function(msg) {
-		var connectorId, d, s, r;
+		var connectorId, d, s, r, myId, nm, url;
 		connectorId = $routeParams.id;
+		myId = $rootScope.loginInfo.id;
 		d = (new Date()).toJSON();
-		s = messages.createNewSentence($rootScope.loginId, d, msg);
+		//check it's a group talk or not
+		var gFlag = $scope.info.group;
+		if (gFlag) {
+console.log("group talk: " + d + "   msg" + msg);
+			nm = $rootScope.loginInfo.name;
+			url = "img/" + $rootScope.loginInfo.url;
+			s = messages.createNewSentenceG(myId, nm, url, d, msg);
+		} else {
+console.log("private talk");	
+			s = messages.createNewSentenceP(myId, d, msg);	
+		}
+		
 		r = messages.sendMsgIn(connectorId, s, d);
 		if (r) {
 			var newHash = 'anchor' + s.datetime;

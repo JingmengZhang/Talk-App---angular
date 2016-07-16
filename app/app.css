@@ -145,13 +145,14 @@ span.dlg-msg {
   -0-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
-  vertical-align: text-bottom;
+  vertical-align: text-top;
 }
 
 .detail-dlg {
   max-width: 75%;
   margin: 1px;
   padding: 6px;
+  color: #000;
   background-color: #e6e6e6;
   -webkit-border-radius: 10px;
   -0-border-radius: 10px;
@@ -170,6 +171,16 @@ span.dlg-msg {
   -0-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+  float: right;
+}
+
+.detail-nm-xs {
+  font-size: 9px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.fr {
   float: right;
 }
 
