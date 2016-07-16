@@ -40,7 +40,8 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.list'])
 	}
 })
 .directive('myEnter', function($timeout) {
-	return function (scope, elem, attrs) {
+	return {
+	link: function (scope, elem, attrs) {
 		elem.bind("keydown keypress", function(e) {
 			//prevent empty input
 			if (scope.newMessage == undefined || scope.newMessage == null || scope.newMessage == '') {
@@ -53,6 +54,7 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.list'])
 				e.preventDefault();
 			}
 		});
+	}
 	};
 })
 .controller('View2Ctrl', ['$scope', '$routeParams', 'messages', '$rootScope', '$location', '$anchorScroll', function($scope, $routeParams, messages, $rootScope, $location, $anchorScroll) {
@@ -67,17 +69,16 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.list'])
 		//check it's a group talk or not
 		var gFlag = $scope.info.group;
 		if (gFlag) {
-console.log("group talk: " + d + "   msg" + msg);
 			nm = $rootScope.loginInfo.name;
 			url = "img/" + $rootScope.loginInfo.url;
 			s = messages.createNewSentenceG(myId, nm, url, d, msg);
 		} else {
-console.log("private talk");	
 			s = messages.createNewSentenceP(myId, d, msg);	
 		}
 		
 		r = messages.sendMsgIn(connectorId, s, d);
 		if (r) {
+			// scroll to the bottom to disply
 			var newHash = 'anchor' + s.datetime;
 			if ($location.hash() !== newHash) {
 				$location.hash(newHash);
@@ -87,7 +88,6 @@ console.log("private talk");
 			
 			//clear the input box
 			$scope.newMessage = null;
-			//$scope.newMessage.focus();
 		}
 	};
 

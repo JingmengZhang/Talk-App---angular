@@ -17,6 +17,7 @@ angular.module('myApp.list', ['ngRoute'])
 
 }])
 .filter('dateFormat', function($filter) {
+	//to change datetime disply
 	return function(input) {
 		if (input == null){return "";}
 		var result = $filter('date')(input, 'MM/dd/yyyy');
@@ -28,20 +29,24 @@ angular.module('myApp.list', ['ngRoute'])
 	}
 })
 .filter('lastMsg', function() {
+	//to display only 
 	return function(input) {	
 		if (input == null || input.length == 0){return "";}
-		var result, i, temp, saveInfo;
-		saveInfo = input[0];
-		for (i=1; i<input.length; i++) {
-			temp = input[i];
-			if (saveInfo.datetime < temp.datetime) {
-				saveInfo = temp;
-			}
-		}
+		var result, i, temp, saveInfo, spealerNm;
+		saveInfo = input[input.length-1];
 		result = saveInfo.text;
+
+		// disply speaker name for group only
+		var spealerNm = '';
+		if (saveInfo.hasOwnProperty('name')) {
+			spealerNm = saveInfo.name;
+			result = spealerNm + ": " +result;
+		}
+		// set length in disply
 		if (result.length != null && result.length > 38) {
 			result = result.substr(0, 34) + '...';
 		}
+
 		return result;
 	}
 })
@@ -84,12 +89,10 @@ angular.module('myApp.list', ['ngRoute'])
 		},
 		// for private talk
 		createNewSentenceP: function(id, dttm, txt) {
-console.log("group talk: " +id+" "+dttm+" "+txt);
 			return new SentenceP(id, dttm, txt);
 		},
 		// for group talk
 		createNewSentenceG: function(id, nm, url, dt, txt) {
-console.log("group talk: " +id+" "+nm+" "+url+" "+dt+" "+txt);
 			return new SentenceG(id, nm, url, dt, txt);
 		},
 
@@ -102,8 +105,7 @@ console.log("group talk: " +id+" "+nm+" "+url+" "+dt+" "+txt);
 				if (target.userId == id) {
 					target.datetime = dt;
 					dlg = target.contents;
-
-		console.log(dlg);
+					// add message to data
 					if (dlg === null || dlg === undefined) {
 						target.contents = [];
 						target.contents.push(s);
