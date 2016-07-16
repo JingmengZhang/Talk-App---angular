@@ -7,7 +7,7 @@ body {
 
 .wrap-whole {
   min-width: 375px;
-  height: 640px; /*667px?*/
+  height: 637px; /*667px?*/
 }
 
 @media only screen and (min-width: 560px) {
@@ -44,7 +44,7 @@ body {
 }
 .main-list {
   margin-top: 40px;
-  height: 570px; /*597px?*/
+  height: 567px; /*597px?*/
   overflow: auto;
   background-color: #f3f3f3;
   background: -webkit-linear-gradient(#f3f3f3, white);
@@ -103,6 +103,11 @@ span.dlg-msg {
 }
 
 /* css for detail */
+.detail-div {
+  height: 557px;
+  overflow: auto;
+}
+
 .detail-hd {
   padding: 15px 25px;
   border-bottom: 1px solid #e3e3e3;
@@ -144,7 +149,7 @@ span.dlg-msg {
 }
 
 .detail-dlg {
-  max-width: 70%;
+  max-width: 75%;
   margin: 1px;
   padding: 6px;
   background-color: #e6e6e6;
@@ -156,7 +161,7 @@ span.dlg-msg {
 }
 
 .detail-dlg-self {
-  max-width: 70%;
+  max-width: 75%;
   margin: 1px;
   padding: 6px;
   color: #fff;
@@ -178,7 +183,7 @@ span.dlg-msg {
 .detail-ft-msg {
   border: none;
   height: 30px;
-  padding: 10px;
+  margin-left: 10px;
 }
 
 .detail-ft-btn {
@@ -186,4 +191,9 @@ span.dlg-msg {
   color: #0060B6;
   height: 30px;
   border: none;
+}
+
+#bottom {
+  margin-bottom: 0px;
+  visibility: hidden;
 }

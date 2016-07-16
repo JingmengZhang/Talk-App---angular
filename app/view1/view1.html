@@ -3,8 +3,16 @@
 {{d.message}}</my-dialogue>
 -->
 <div class='col-xs-12 dlg-each no-gutter' ng-repeat="d in dialogues" ng-click="visitDetail(d.userId)">
-	<image class='col-xs-2 dlg-img-circ' ng-src='{{d.url}}'></image>
-	<div class='col-xs-10 dlg-div no-gutter'>
+	<!-- for non-group-->
+	<image class='col-xs-2 dlg-img-circ' ng-src='{{d.url}}' ng-hide="d.group"></image>
+	<div class='col-xs-10 dlg-div no-gutter' ng-hide="d.group">
+		<span class='col-xs-8 dlg-nm'>{{d.name}}</span>
+		<span class='col-xs-4 dlg-dt lr'>{{d.datetime | dateFormat}}</span>
+		<span class='col-xs-12 dlg-msg'>{{ d.contents | lastMsg}}</span>
+	</div>
+	<!-- for group-->
+	<image class='col-xs-2 dlg-img-circ' ng-src='{{d.url}}' ng-show="d.group"></image>
+	<div class='col-xs-10 dlg-div no-gutter' ng-show="d.group">
 		<span class='col-xs-8 dlg-nm'>{{d.name}}</span>
 		<span class='col-xs-4 dlg-dt lr'>{{d.datetime | dateFormat}}</span>
 		<span class='col-xs-12 dlg-msg'>{{ d.contents | lastMsg}}</span>

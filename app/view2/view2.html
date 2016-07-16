@@ -1,4 +1,4 @@
-<div class='col-xs-12 no-gutter'>
+<div class='col-xs-12 no-gutter detail-div'>
 	<div class="row detail-hd">
 		<image class='col-xs-3 detail-img-bg' ng-src='{{info.url}}'></image>
 		<div class='col-xs-9 no-gutter'>
@@ -8,13 +8,13 @@
 		</div>
 	</div>
 	<ul class="row no-style-ul no-gutter">
-		<li class='col-xs-12 no-gutter' ng-repeat="m in info.contents">
+		<li id="anchor{{m.datetime}}" class='col-xs-12 no-gutter' ng-repeat="m in info.contents">
 			<image class='col-xs-3 detail-img-sm' ng-src='{{info.url}}' ng-hide="m.userId == loginId"></image>
-			<span ng-class="{'detail-dlg': m.userId != loginId, 'detail-dlg-self': m.userId == loginId}">{{m.text}}</span>
+			<div ng-class="{'detail-dlg': m.userId != loginId, 'detail-dlg-self': m.userId == loginId}">{{m.text | widthFixed}}</div>
 		</li>
 	</ul>
 	<div class="row div-ft no-gutter">
-		<input class="col-xs-10 detail-ft-msg" type="text" ng-model="newMessage" my-enter="send(newMessage)" placeholder="Type a message..."/>
+		<input class="col-xs-9 detail-ft-msg" type="text" ng-model="newMessage" my-enter="send(newMessage)" placeholder="Type a message..."/>
 		<input class="col-xs-2 detail-ft-btn" type="buttom" value="Send" ng-click="send(newMessage)" ng-disabled="newMessage == null || newMessage == ''"/>
 	</div>
 </div>
