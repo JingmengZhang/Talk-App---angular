@@ -16,7 +16,7 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.messages-factory', 'ngSanitize
 		if (message == null) {
 			$scope.newMessage = ":smiley:";
 		} else {
-			$scope.newMessage = message + ":smiley:";
+			$scope.newMessage = message + " :smiley:";
 		}
 		
 	};
