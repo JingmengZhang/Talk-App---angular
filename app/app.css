@@ -14,6 +14,7 @@ body {
   div.wrap-whole, div.div-ft {
     float: left;
     width: 375px;
+    background-color: #fff;
   }
 
   div.head-line {
@@ -192,6 +193,7 @@ span.dlg-msg {
   position: fixed;
   width: 100%;
   bottom: 0;
+  background-color: #fff;
   border-top: 1px solid #e3e3e3;
 }
 
@@ -218,6 +220,7 @@ span.dlg-msg {
 }
 
 /* for image upload --end */
+
 .detail-ft-btn {
   text-align: center;
   color: #0060B6;
@@ -227,4 +230,9 @@ span.dlg-msg {
   -0-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  margin-left: 2px;
+}
+
+.font-sz-20 {
+  font-size: 20px;
 }

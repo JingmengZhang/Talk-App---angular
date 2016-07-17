@@ -1,3 +1,20 @@
+# Message App (front-end only)
+# Author: R. Zhang
+# Date: 07/17/2016
+
+
+This is a simple talk app(front end only) writen based on angular-seed. When you unzip this files, you can follow the following step to install it on your computer.
+
+To prepare this project, run command line "npm install" on root file in order to install the dependencies;
+Then, to run this project, run command line "npm start". And then type "localhost:8000" on browser. This project is created with the brief template. I use routeProvider to route view to different pages.
+
+In view1.html, I display all dialogues which I joined ordered by decreasing time. For each dialogues, you can click it and change into a detail page, called view2.html, which shows all information in this dialogue.
+
+In view2.html, which shoes the detail about one conversation. In the main part of this page, it displys all information about the person or group of people that I talk with. After the information part, all dialogues in this conversation is listed ordered by increasing time order.  On the bottom part, there are three buttons and one input box. For the input box, you can input anything you want to talk in there, and you can send your message by clicking "Send" button or "Enter" key.  The button with a photo image is to choose picture and then display it in this conversation (without uploud functionality). The "Emoji" button is to add Emoji picture to the message, however, the content of Emoji can only be changed by typing, not able to choose from a pop-up. At the top-left part, there is a link for people to goback to the list page(view1.html).
+
+For test, run command line "npm test" on root file.
+
+#### backup for the detail information about angular-seed
 # angular-seed — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
