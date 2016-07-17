@@ -10,7 +10,7 @@ angular.module('myApp.list', ['ngRoute', 'myApp.messages-factory'])
 	$rootScope.location = "#!/view1";
 	$rootScope.loginInfo= {"id": 90001, "name": "Recy", "url":"abc.jpg"};
 	$scope.dialogues = messages.getList();
-
+	// Visit detail page
 	$scope.visitDetail = function (id) {
 		$location.path("/view2/"+id);
 	};

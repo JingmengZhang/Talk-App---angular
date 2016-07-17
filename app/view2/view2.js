@@ -7,9 +7,14 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.messages-factory', 'ngSanitize
   });
 }])
 .controller('View2Ctrl', ['$scope', '$routeParams', 'messages', '$rootScope', '$location', '$anchorScroll', function($scope, $routeParams, messages, $rootScope, $location, $anchorScroll) {
+	$scope.error = null;
 	$rootScope.location = "#!/view2";
 	$rootScope.loginInfo= {"id": 90001, "name": "Recy", "url":"abc.jpg"};
 	$scope.info = messages.getDetail($routeParams.id);
+	// show error message
+	if (!$scope.info.hasOwnProperty('id')) {
+		$scope.error = "Error! Please refresh page or click Home to go back.";
+	}
 
 	$scope.createEmoji = function() {
 		var message = $scope.newMessage;
@@ -26,7 +31,8 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.messages-factory', 'ngSanitize
 		connectorId = $routeParams.id;
 		myId = $rootScope.loginInfo.id;
 		d = (new Date()).toJSON();
-		//check it's a group talk or not
+		// Check it's a group talk or not
+		// To create related message
 		var gFlag = $scope.info.group;
 		if (gFlag) {
 			nm = $rootScope.loginInfo.name;
@@ -35,6 +41,7 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.messages-factory', 'ngSanitize
 		} else {
 			s = messages.createNewSentenceP(myId, d, msg, imgFlag);	
 		}
+		// save new message
 		r = messages.sendMsgIn(connectorId, s, d);
 		if (r) {
 			// scroll to the bottom to disply
@@ -45,8 +52,11 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.messages-factory', 'ngSanitize
 				$anchorScroll();
 			}
 			
-			//clear the input box
+			//clear the input box and any error message
 			$scope.newMessage = null;
+			$scope.error = null;
+		} else {
+			$scope.error = "Error! Please refresh page or click Home to go back.";
 		}
 	};
 

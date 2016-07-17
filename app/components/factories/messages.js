@@ -42,7 +42,6 @@ angular.module('myApp.messages-factory', ['ngStorage'])
 				$localStorage.msgData = data;
 			}
 			msgList = $localStorage.msgData;
-
 			for (i=0; i<msgList.length; i++) {
 				if (msgList[i].userId == id) {
 					info = msgList[i];
@@ -60,8 +59,9 @@ angular.module('myApp.messages-factory', ['ngStorage'])
 		},
 		// save message to data
 		sendMsgIn: function(id, s, dt) {
+			var flag = false;
 			if (id == null || s == null) 
-				return false;
+				return flag;
 			var dlg, i, target, msgList;
 			if (!$localStorage.msgData) {
 				$localStorage.msgData = data;
@@ -80,9 +80,11 @@ angular.module('myApp.messages-factory', ['ngStorage'])
 					} else {
 						dlg.push(s);
 					}
+					flag = true;
+					break;
 				}
 			}
-			return true;
+			return flag;
 		}
 	};
 }]);
