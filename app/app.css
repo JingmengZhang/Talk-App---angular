@@ -180,6 +180,10 @@ span.dlg-msg {
   margin-bottom: 0;
 }
 
+.detail-img-upld {
+  max-width: 100px;
+}
+
 .fr {
   float: right;
 }
@@ -194,12 +198,33 @@ span.dlg-msg {
 .detail-ft-msg {
   border: none;
   height: 30px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
+/* for image upload --start */
+.detail-file-img {
+  overflow:hidden;
+  width: 40px;
+  height: 30px;
+  background-image: url("img/photo.jpg");
+}
+
+#picture {
+  width: 40px;
+  height: 30px;
+  z-index:2;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* for image upload --end */
 .detail-ft-btn {
   text-align: center;
   color: #0060B6;
   height: 30px;
   border: none;
+  -webkit-border-radius: 5px;
+  -0-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }

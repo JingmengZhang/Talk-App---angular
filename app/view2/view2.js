@@ -1,5 +1,5 @@
 'use strict';
-angular.module('myApp.detail', ['ngRoute', 'myApp.list'])
+angular.module('myApp.detail', ['ngRoute', 'myApp.list', 'ngSanitize', 'emoji'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2/:id', {
     templateUrl: 'view2/view2.html',
@@ -39,6 +39,21 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.list'])
 		return result;
 	}
 })
+.directive('fdInput', function() {
+	//without upload ,just get the image name for disply only
+	return {
+		link: function (scope, elem, attrs) {
+			elem.on('change', function(e) {
+				var files = e.target.files;
+				var m = "<img src='img/"+ files[0].name +"' class='detail-img-upld' />";
+				//var m = files[0].name; //save for using with imgFlag
+				scope.$apply(function() {
+					scope.send(m, true)
+				});
+			});
+		}
+	};
+})
 .directive('myEnter', function($timeout) {
 	return {
 	link: function (scope, elem, attrs) {
@@ -60,8 +75,19 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.list'])
 .controller('View2Ctrl', ['$scope', '$routeParams', 'messages', '$rootScope', '$location', '$anchorScroll', function($scope, $routeParams, messages, $rootScope, $location, $anchorScroll) {
 	$rootScope.location = "#!/view2";
 	$rootScope.loginInfo= {"id": 90001, "name": "Recy", "url":"abc.jpg"};
-	$scope.info = messages.getDetail($routeParams.id);	
-	$scope.send = function(msg) {
+	$scope.info = messages.getDetail($routeParams.id);
+
+	$scope.createEmoji = function() {
+		var message = $scope.newMessage;
+		if (message == null) {
+			$scope.newMessage = ":smiley:";
+		} else {
+			$scope.newMessage = message + ":smiley:";
+		}
+		
+	};
+
+	$scope.send = function(msg, imgFlag) {
 		var connectorId, d, s, r, myId, nm, url;
 		connectorId = $routeParams.id;
 		myId = $rootScope.loginInfo.id;
@@ -71,11 +97,11 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.list'])
 		if (gFlag) {
 			nm = $rootScope.loginInfo.name;
 			url = "img/" + $rootScope.loginInfo.url;
-			s = messages.createNewSentenceG(myId, nm, url, d, msg);
+			s = messages.createNewSentenceG(myId, nm, url, d, msg, imgFlag);
 		} else {
-			s = messages.createNewSentenceP(myId, d, msg);	
+			s = messages.createNewSentenceP(myId, d, msg, imgFlag);	
 		}
-		
+console.log(s);
 		r = messages.sendMsgIn(connectorId, s, d);
 		if (r) {
 			// scroll to the bottom to disply

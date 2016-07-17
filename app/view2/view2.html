@@ -12,21 +12,24 @@
 			<!-- no-group -->
 			<div ng-hide="info.group" class='col-xs-12 no-gutter'>
 				<img class='col-xs-3 detail-img-sm' ng-src='{{info.url}}' ng-hide="m.userId == loginInfo.id"></img>
-				<div ng-class="{'detail-dlg': m.userId != loginInfo.id, 'detail-dlg-self': m.userId == loginInfo.id}">{{m.text | widthFixed}}</div>
-
+				<div ng-class="{'detail-dlg': m.userId != loginInfo.id, 'detail-dlg-self': m.userId == loginInfo.id}" ng-bind-html="m.text | emoji | widthFixed"></div>
 			</div>
 			<!-- group -->
 			<div ng-show="info.group" class='col-xs-12 no-gutter'>
 				<img class='col-xs-3 detail-img-sm' ng-src='{{ m.url }}' ng-class="{'fr': m.userId == loginInfo.id}"></img>
-				<div style="disply: block;">
+				<div>
 					<p class="detail-nm-xs" ng-hide="m.userId == loginInfo.id">{{ m.name }}</p>
-					<span ng-class="{'detail-dlg': m.userId != loginInfo.id, 'detail-dlg-self': m.userId == loginInfo.id}">{{m.text | widthFixed}}</span>
+					<span ng-class="{'detail-dlg': m.userId != loginInfo.id, 'detail-dlg-self': m.userId == loginInfo.id}" ng-bind-html="m.text | emoji | widthFixed"></span>
 				</div>
 			</div>
 		</li>
 	</ul>
 	<div class="row div-ft no-gutter">
-		<input class="col-xs-9 detail-ft-msg" type="text" ng-model="newMessage" my-enter="send(newMessage)" placeholder="Type a message..."/>
-		<input class="col-xs-2 detail-ft-btn" type="buttom" value="Send" ng-click="send(newMessage)" ng-disabled="newMessage == null || newMessage == ''"/>
+		<div class="col-xs-1 detail-file-img" id="img">
+			<input type="file" id="picture" fd-input />
+		</div>
+		<input class="col-xs-6 detail-ft-msg" type="text" ng-model="newMessage" my-enter="send(newMessage, false)" placeholder="Type a message..."/>
+		<input class="col-xs-2 detail-ft-btn fr" type="button" value="Send" ng-click="send(newMessage, false)" ng-disabled="newMessage == null || newMessage == ''"/>
+		<input class="col-xs-2 detail-ft-btn fr" type="button" value="Emoji" ng-click="createEmoji()"/>
 	</div>
 </div>
