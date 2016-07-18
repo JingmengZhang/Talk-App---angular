@@ -10,7 +10,7 @@ angular.module('myApp.detail.fdInput-directive', [])
 				var m = "<img src='img/"+ files[0].name +"' class='detail-img-upld' />";
 				//var m = files[0].name; //save for using with imgFlag
 				scope.$apply(function() {
-					scope.send(m, true)
+					scope.send(m, true);
 				});
 			});
 		}

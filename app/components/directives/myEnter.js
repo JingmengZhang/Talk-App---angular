@@ -9,7 +9,7 @@ angular.module('myApp.detail.myEnter-directive', [])
 			if (scope.newMessage == undefined || scope.newMessage == null || scope.newMessage == '') {
 				return;
 			}
-			if (e.which === 13) {
+			if (e.which === 13 || e.keyCode === 13) {
 				scope.$apply(function() {
 					scope.$eval(attrs.myEnter);
 				});

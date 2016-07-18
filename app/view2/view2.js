@@ -3,14 +3,15 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.messages-factory', 'ngSanitize
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view2/:id', {
     templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl'
+    controller: 'detailCtrl'
   });
 }])
-.controller('View2Ctrl', ['$scope', '$routeParams', 'messages', '$rootScope', '$location', '$anchorScroll', function($scope, $routeParams, messages, $rootScope, $location, $anchorScroll) {
+.controller('detailCtrl', ['$scope', '$routeParams', 'messages', '$rootScope', '$location', '$anchorScroll', function($scope, $routeParams, messages, $rootScope, $location, $anchorScroll) {
 	$scope.error = null;
 	$rootScope.location = "#!/view2";
 	$rootScope.loginInfo= {"id": 90001, "name": "Recy", "url":"abc.jpg"};
 	$scope.info = messages.getDetail($routeParams.id);
+console.log($scope.info);
 	// show error message
 	if (!$scope.info.hasOwnProperty('id')) {
 		$scope.error = "Error! Please refresh page or click Home to go back.";
