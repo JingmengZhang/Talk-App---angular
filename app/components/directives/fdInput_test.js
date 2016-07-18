@@ -19,7 +19,7 @@ describe('myApp.detail module', function() {
       		var ev = $.Event('change');
       		// as el is reference to compiled directive
       		el.triggerHandler(ev);
-      		expect(el.scope().sent).toHaveBeenCalled();
+      		expect(scope.sent).toHaveBeenCalled();
     		});
 	});
 });

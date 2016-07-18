@@ -11,7 +11,6 @@ angular.module('myApp.detail', ['ngRoute', 'myApp.messages-factory', 'ngSanitize
 	$rootScope.location = "#!/view2";
 	$rootScope.loginInfo= {"id": 90001, "name": "Recy", "url":"abc.jpg"};
 	$scope.info = messages.getDetail($routeParams.id);
-console.log($scope.info);
 	// show error message
 	if (!$scope.info.hasOwnProperty('id')) {
 		$scope.error = "Error! Please refresh page or click Home to go back.";

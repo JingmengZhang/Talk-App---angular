@@ -5,11 +5,10 @@ describe('myApp.detail module', function() {
 	
 	beforeEach(function() {
 		module('myApp.detail');
-		inject(function($compile, $rootScope, $controller) {
+		inject(function($compile, $rootScope) {
 			scope = $rootScope.$new();
 			//ctrl = $controller("detailCtrl", {$routeParams:{id:'10001'},$scope: scope,messages:mockService});
 			el = $compile(angular.element('<input type="text" my-enter="send()">'))(scope);
-			ctrl = el.controller("detailCtrl");
 			scope.$digest();
 		});
 	});
@@ -17,15 +16,13 @@ describe('myApp.detail module', function() {
 	describe('my-enter directive', function() {
 		it('Enter key should call the method inside controller', function() {
 			
-      		spyOn(ctrl, 'send');
+      		spyOn(scope, 'send').and.callThrough();
       		var enterKey = $.Event('keydown');
       		enterKey.which = 13;
       		
       		// as el is reference to compiled directive
       		el.triggerHandler(enterKey);
-      		
-      		
-      		expect(ctrl.sent).toHaveBeenCalled();
+      		expect(scope.sent).toHaveBeenCalled();
     		});
 	});
 });

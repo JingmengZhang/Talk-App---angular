@@ -3,7 +3,7 @@
 angular.module('myApp.detail.myEnter-directive', [])
 .directive('myEnter', function($timeout) {
 	return {
-		link: function (scope, elem, attrs) {
+		link: function (scope, elem, attrs, send) {
 			elem.bind("keydown keypress", function(e) {
 			//prevent empty input
 			if (scope.newMessage == undefined || scope.newMessage == null || scope.newMessage == '') {

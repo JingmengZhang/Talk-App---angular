@@ -4,7 +4,7 @@ angular.module('myApp.detail.fdInput-directive', [])
 .directive('fdInput', function() {
 	//without upload ,just get the image name for disply only
 	return {
-		link: function (scope, elem, attrs) {
+		link: function (scope, elem, attrs, send) {
 			elem.on('change', function(e) {
 				var files = e.target.files;
 				var m = "<img src='img/"+ files[0].name +"' class='detail-img-upld' />";
